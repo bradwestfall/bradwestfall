@@ -1,0 +1,27 @@
+.page {
+    border-top: 5px solid $gray;
+}
+
+.primary-content {
+
+    margin: 0 2em;
+
+    @include wider-than($desktop-breakpoint) {
+        display: flex;
+        margin: 3em auto;
+        width: 650px;
+    }
+}
+
+.primary-aside {
+
+    @include wider-than($desktop-breakpoint) {
+        width: 200px;
+        position: fixed;
+        transform: translateX(-250px);
+    }
+}
+
+main {
+    flex: 1;
+}

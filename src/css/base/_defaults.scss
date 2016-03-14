@@ -1,0 +1,79 @@
+// ****************************************
+//   Inherited Syles
+// ****************************************
+
+html {
+    box-sizing: border-box;
+    color: $default-text-color;
+    font: $default-font-size $default-font-family;
+    font-weight: $default-font-weight;
+    letter-spacing: 0.05em;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+    color: inherit;
+    font: inherit;
+    letter-spacing: inherit;
+}
+
+
+// ****************************************
+//   Body
+// ****************************************
+
+body {
+    margin: 0;
+}
+
+
+// ****************************************
+//   Common tags 
+// ****************************************
+
+a {
+    color: $default-anchor-color;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+    font-family: $default-title-font-family;
+    line-height: 1.2em;
+    font-style: italic;
+    margin-top: 2rem;
+}
+
+h1 { font-size: 4rem; }
+h1:first-child { margin-top: 0; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+em { font-style: italic; }
+strong { font-weight: 600; }
+
+p {
+    line-height: 1.8em;
+}
+
+ul, ol {
+    margin: 2em 0;
+}
+
+li {
+    margin: 0.7em 0;
+}
+
+/****************************************
+  Selections
+*****************************************/
+
+// ::selection {
+//     background: yellow;
+//     color: white;
+// }

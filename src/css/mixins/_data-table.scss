@@ -1,0 +1,41 @@
+@mixin data-table() {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed; /* Required for the text-overflow ellipsis stuff */
+
+    th, td {
+        text-align: left;
+        padding: 0.7em;
+        span {
+            display: block;
+        }
+    }
+
+    // ****************************************
+    //  Header
+    // ****************************************/
+
+    thead {
+        font-weight: 600;
+    }
+
+    thead tr {
+        border-bottom: 1px solid #555;
+    }
+
+    // ****************************************
+    //  Body
+    // ****************************************/
+
+    tbody tr {
+        border-bottom: 1px solid #eee;
+    }
+
+    td.trim {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+}

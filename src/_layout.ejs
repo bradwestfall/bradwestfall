@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- partial('./_partials/_head'); %>
+
+<body>
+    
+    <div class="page">
+
+        <div class="primary-content">
+            <aside class="primary-aside">
+                <nav class="link-list">
+                    <a href="/">Contact</a>
+                    <a href="/community">Community</a>
+                    <a href="/articles">Articles</a>
+                    <a href="/talks">Talks</a>
+                    <a href="/sitepoint">Sitepoint</a>
+                    <a href="https://www.youtube.com/channel/UCZi-0WJPUNb_LQocFMJw5dA/videos">YouTube</a>
+                    <a href="http://azpixels.com">Work</a>
+                </nav>
+            </aside>
+            <main>
+                <%- yield %>
+            </main>
+        </div>
+
+    </div>
+    
+    <%- partial('./_partials/_scripts'); %>
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var harp = require('harp');
-var del = require('del')
-var deploy = require('gulp-gh-pages');
+var del = require('del');
+var ghPages = require('gulp-gh-pages');
 var cp = require('child_process');
 var clean = require('gulp-rimraf');
 
@@ -46,7 +46,7 @@ gulp.task('clean', function () {
 
 gulp.task('deploy', function () {
   return gulp.src("./dist/**/*")
-    .pipe(deploy());
+    .pipe(ghPages());
 });
 
 gulp.task('default', ['serve']);

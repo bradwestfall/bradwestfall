@@ -1,0 +1,23 @@
+@mixin button-normalize() {
+	margin: 0;
+	padding: 0;
+	border: none;
+	background-color: transparent;
+	font-size: 10pt;
+	outline: 0;
+	display: inline-block;
+
+	&::-moz-focus-inner { border: 0; }
+
+	&:hover {
+		outline: 0;
+	}
+}
+
+@mixin button() {
+	padding: 5px 15px;
+	border-radius: 4px;
+	cursor: pointer;
+	background-color: #4BC86C;
+	color: #fff;
+}

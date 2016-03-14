@@ -1,0 +1,11 @@
+{
+    "javascript-es6-modules-with-babel": {
+        "title": "ES2015 (ES6) Modules with Babel",
+        "date": "2016-03-07",
+        "category": ["JavaScript", "ES6"]
+    },
+    "index": {
+        "layout": "../_layout",
+        "isArticle": false
+    }
+}

@@ -1,0 +1,20 @@
+<h1>Articles</h1>
+
+<p>The main purpose of this site is to give me an outlet to write about web development, especially about JavaScript and CSS:</p>
+
+<ul>
+<% for (var slug in public.articles._data) { %>
+    <% if (public.articles._data[slug].isArticle !== false) { %>
+        <li><a href="/articles/<%= slug %>"><%= public.articles._data[slug].title%></a></li>
+    <% } %>
+<% } %>
+</ul>
+
+<h2>Guest Posts</h2>
+
+<p>I've had the pleasure of writing guest posts other sites as well:</p>
+
+<ul>
+    <li>CSS-Tricks: <a href="https://css-tricks.com/planning-a-tech-event/">Planning a Tech Event in 6 Months</a></li>
+    <li>CSS-Tricks: <a href="https://css-tricks.com/learning-react-router/">Leveling Up With React: React Router</a></li>
+</ul>

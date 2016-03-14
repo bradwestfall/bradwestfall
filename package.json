@@ -1,7 +1,6 @@
 {
-  "name": "blog",
+  "name": "bradwestfall",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "gulp",
@@ -19,5 +18,8 @@
     "gulp-gh-pages": "^0.5.4",
     "gulp-rimraf": "^0.2.0",
     "harp": "^0.20.1"
+  },
+  "dependencies": {
+    "prismjs": "^1.4.1"
   }
 }
