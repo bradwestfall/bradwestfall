@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Article</title>
+    <title>Brad Westfall | Web Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
     <link rel="stylesheet" href="/css/main.css">
-    <link href='https://fonts.googleapis.com/css?family=Abril+Fatface|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Abril+Fatface|Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
@@ -54,7 +54,7 @@ module.exports = {
     ...
 };
 </code></pre>
-<p>One thing that make exporting different in ES2015 modules is its ability to export multiple things from the same file:</p>
+<p>One thing that make exporting different in ES2015 modules is their ability to <code>export</code> multiple things from the same file:</p>
 <pre><code class="language-js">// second-example.js
 export function foo() {
     ...
@@ -64,14 +64,14 @@ export function bar() {
     ...
 }
 </code></pre>
-<p>However, importing each of these files gives a different result than you may expect:</p>
+<p>However, if we were to <code>import</code> the two examples (the first being a CommonJS export and the second being an ES2015 export), we get different results:</p>
 <pre><code class="language-js">import first from &#39;first-example&#39;;
 import second from &#39;second-example&#39;;
 
 console.log(first);  // object
 console.log(second); // undefined
 </code></pre>
-<p>The second example doesn&#39;t have a <code>default</code> export so the variable returned is <code>undefined</code>. However, destructuring can be used to extract the <code>foo</code> and <code>bar</code> functions into variables:</p>
+<p>With ES2015 exports, if no <code>default</code> is defined and the file has only named exports, then the above import statement will produce <code>undefined</code>. However, destructuring can be used to extract the <code>foo</code> and <code>bar</code> functions into variables:</p>
 <pre><code class="language-js">import { foo, bar } from &#39;second-example&#39;;
 
 foo();
@@ -83,7 +83,7 @@ foo();
 second.foo();
 second.bar();
 </code></pre>
-<p class="footnote">* Everything that is being exported that is</p>
+<p class="footnote">* The object, <code>second</code>, will contain a method of all named exports from the file. In other words, if there were functions in the file that weren&#39;t exported, they won&#39;t become methods of <code>second</code>.</p>
 
 
 <h2>Default Exports</h2><p>As already suggested, modules can also designate one of its exports as a <code>default</code>. If a file has a <code>default</code> export, then the respective <code>import</code> wouldn&#39;t need to do destructuring or the asterisk solution:</p>
