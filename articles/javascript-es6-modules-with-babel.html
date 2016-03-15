@@ -41,19 +41,22 @@
     </header>
     <p class="intro">Every once in a while, a third-party tool or concept is so compelling that it eventually makes its way into the standard. This is what happened with CommonJS and ES2015 (ES6) modules.</p>
 
-<p>While ES2015 module syntax differs from CommonJS, it&#39;s clear that they were influenced by, and designed to be compatible with CommonJS. With <a href="http://babeljs.io/">Babel</a>, the <code>require</code> statement from CommonJS can be replaced with an <code>import</code> as of Node like this:</p>
+<p>While ES2015 module syntax differs from CommonJS, it&#39;s clear that it was influenced by, and designed to be compatible with CommonJS.</p>
+<p>From the <code>import</code> standpoint, here&#39;s how the new ES2015 syntax looks in comparison:</p>
 <pre><code class="language-js">// CommonJS
 var express = require(&#39;express&#39;);
 
 // ES2015
 import express from &#39;express&#39;;
 </code></pre>
-<p class="footnote">At the time of this writing, you must use a transpiler such as <strong>Babel</strong> to use ES2015 modules</p>
+<p class="footnote">At the time of this writing, Node does not support ES2015 modules. You must use a transpiler such as <a href="http://babeljs.io/">Babel</a> to use them. If you want to use this syntax for the browser, use Babel with a bundler like Webpack or Browserify</p>
 
 <p>Import statements can consume anything from a CommonJS <code>module.exports</code> which means all modules written in CommonJS are instantly compatible with ES2015 modules.</p>
 <p>There are a few things that make the new syntax compelling over CommonJS, including its ability to do multiple exports and some interesting new patterns with destructuring.</p>
-<h2>Multiple Exports</h2><p>CommonJS only allows for one thing to be exported, which means that if the developer wanted to export multiple functions, they would need to export an object with the functions inside:</p>
+<p>This article doesn&#39;t focus so much on teaching why one would want to use modules, but rather as a contrast between CommonJS and ES2015 modules.</p>
+<h2>Multiple Exports</h2><p>CommonJS only allows for one thing to be exported, which means that if the developer wanted to export multiple functions, they would need to export an object methods instead:</p>
 <pre><code class="language-js">// first-example.js
+
 module.exports = {
     foo: function() { ... },
     bar: function() { ... },
@@ -62,6 +65,7 @@ module.exports = {
 </code></pre>
 <p>One thing that make exporting different in ES2015 modules is their ability to <code>export</code> multiple things from the same file:</p>
 <pre><code class="language-js">// second-example.js
+
 export function foo() {
     ...
 }
@@ -70,29 +74,31 @@ export function bar() {
     ...
 }
 </code></pre>
-<p>However, if we were to <code>import</code> the two examples (the first being a CommonJS export and the second being an ES2015 export), we get different results:</p>
+<p>However, if we were to <code>import</code> the two examples (the first being a CommonJS export and the second being an ES2015 export), we would get different results:</p>
 <pre><code class="language-js">import first from &#39;first-example&#39;;
 import second from &#39;second-example&#39;;
 
 console.log(first);  // object
 console.log(second); // undefined
 </code></pre>
-<p>With ES2015 exports, if no <code>default</code> is defined and the file has only named exports, then the above import statement will produce <code>undefined</code>. However, destructuring can be used to extract the <code>foo</code> and <code>bar</code> functions into variables:</p>
+<p>In the <code>second-example.js</code> file, there are multiple exports but none are the &quot;default&quot; export. Instead it has two &quot;named&quot; exports. This causes an <code>undefined</code> to be returned to our variable name with Babel&#39;s interpretation of ES2015 modules.</p>
+<p>To import the ES2015 module, we can use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">destructuring</a>, another new ES2015 feature. Destructuring can be used to extract the named <code>foo</code> and <code>bar</code> functions into variables:</p>
 <pre><code class="language-js">import { foo, bar } from &#39;second-example&#39;;
 
 foo();
 </code></pre>
-<p>Destructuring could have also been used in the first example the same way. But the interesting thing is that you might get nothing (<code>undefined</code>) if the module isn&#39;t setup for a <code>default</code> export.</p>
-<p>Alternatively, the asterisk can be used to import everything into an object:</p>
+<p class="footnote">
+    Destructuring could have also been used for the <code>first-example.js</code> file to extract the object&#39;s methods just as we did with the <code>second-example.js</code> file.
+</p>
+
+<p>Alternatively, the asterisk can be used to import all the named functions into an object:</p>
 <pre><code class="language-js">import * as second from &#39;second-example&#39;;
 
 second.foo();
 second.bar();
 </code></pre>
-<p class="footnote">* The object, <code>second</code>, will contain a method of all named exports from the file. In other words, if there were functions in the file that weren&#39;t exported, they won&#39;t become methods of <code>second</code>.</p>
-
-
-<h2>Default Exports</h2><p>As already suggested, modules can also designate one of its exports as a <code>default</code>. If a file has a <code>default</code> export, then the respective <code>import</code> wouldn&#39;t need to do destructuring or the asterisk solution:</p>
+<p>In this case, the object, <code>second</code>, will contain methods for each named exports from the file. If there were functions in the file that weren&#39;t exported, they won&#39;t become methods of <code>second</code>.</p>
+<h2>Default Exports</h2><p>As already suggested, a module can also designate one of its exports as a <code>default</code>. If a file has a <code>default</code> export, then the respective <code>import</code> wouldn&#39;t need to do destructuring or the asterisk syntax:</p>
 <pre><code class="language-js">// third-example.js
 export function foo() { ... }
 export function bar() { ... }
@@ -101,32 +107,33 @@ export default function() { ... }
 <pre><code class="language-js">import something from &#39;third-example&#39;;
 something() // calls the default
 </code></pre>
-<p class="footnote">The variable name <code>something</code> is just an example. Any name chosen would load the <code>default</code> export</p>
-
-<p>In this example, the <code>import</code> statement has opted out of importing <code>foo</code> and <code>bar</code>. However, it is possible to get all three functions with the <code>import</code>:</p>
+<p>The variable name <code>something</code> is just an example. Any variable name could have been chosen to load the <code>default</code> export. The main point though is that with this <code>import</code> syntax, we will get the <code>default</code> of the module, and nothing else.</p>
+<p>So what if we want to <code>import</code> the default along with <code>foo</code> and <code>bar</code>? It is possible to get all three functions with the <code>import</code>:</p>
 <pre><code class="language-js">// first way
 import * as myModule from &#39;third-example&#39;;
 
 // second way
-import defaultFunc { foo, bar } from &#39;third-example&#39;;
+import defaultFunc, { foo, bar } from &#39;third-example&#39;;
 
 // third way
 import defaultFunc, * as myModule from &#39;third-example&#39;;
 </code></pre>
-<p><strong>The first way</strong> creates an object called <code>myModule</code> with all three exports as methods. The <code>default</code> method has a property name of defualt, ie: <code>myModule.default()</code>.</p>
-<p><strong>The second way</strong> allows us to turn each export into a variable using a combination of destructuring for the named functions and by choosing any variable name for the default.</p>
+<p><strong>The first way</strong> creates an object called <code>myModule</code> with all three exports as methods. The <code>default</code> export becomes a property name of &quot;defualt&quot;, ie: <code>myModule.default()</code>.</p>
+<p><strong>The second way</strong> creates three variables: <code>defaultFunc</code>, <code>foo</code>, and <code>bar</code> using a hybrid of the destructuring way and the default way.</p>
 <p><strong>The third way</strong> allows us to create <code>defaultFunc</code> as a normal variable and then an object called <code>myModule</code> which contains all exports as properties (including the default oddly enough)</p>
 <h2>Exporting Expressions</h2><p>In the examples so far, exporting functions have come in the form of named function declarations. However, function expression syntax can also be used:</p>
-<pre><code class="language-js">export const foo = function() {
+<pre><code class="language-js">// Function Declarations
+export function foo() {
     ...
 }
 
+// Function Expressions
 export const bar = function() {
     ...
 }
 </code></pre>
-<p>To my knowledge, there is really no advantage to either one.</p>
-<h2>Export Rules</h2><p>All non-default exports need to be named values with <code>var</code>, <code>let</code>, or <code>const</code>. The <code>default</code> export though cannot be named:</p>
+<p>While ordinarily the difference between function declarations and expressions is a matter of <a href="http://www.w3schools.com/js/js_hoisting.asp">hoisting</a>, I don&#39;t believe there are any real differences between the two when it comes to modules.</p>
+<h2>Other types of exports</h2><p>Modules can also export things other than functions. But all non-default exports need to be named values with <code>var</code>, <code>let</code>, or <code>const</code>. The <code>default</code> export though cannot be named:</p>
 <pre><code class="language-js">// All of these are valid
 export const foo = &#39;abc&#39;
 export const bar = {some: &#39;value&#39;}
@@ -143,16 +150,21 @@ export default someName = {some: &#39;value&#39;}
 }
 </code></pre>
 <p>This allows consumers of those modules to use the module with <code>require()</code> like this:</p>
-<pre><code>var someModule = require(&#39;some-module&#39;)()
-</code></pre><p>This code includes the module function and then calls it immediately which returns the result of that call to <code>someModule</code>.</p>
-<p>However, with the new ES2015 module syntax, if a module exports a function (even if by default), there would be no way to allow consumers of that module to use a similar syntax:</p>
+<pre><code class="language-js">var someModule = require(&#39;some-module&#39;)()
+</code></pre>
+<p class="footnote">Notice the extra set of parenthesis at the end.</p>
+
+<p>This code includes the module (which is a function instead of an object) and then calls the function immediately. Then, it&#39;s the result of that function call which is returned to <code>someModule</code>.</p>
+<p>Some have wondered how these types of modules will continue to be compatible with ES2015 since the new <code>import</code> syntax cannot allow a returned function to be called immediately in a similar way:</p>
 <pre><code class="language-js">// Nope, that&#39;s not valid at all
 import someModule from &#39;some-module&#39;();
 </code></pre>
-<p>You could do the import and function call in two lines though:</p>
+<p>However, with the new ES2015 module syntax, if a module exports a function (even if by default), You could do the <code>import</code> in one line and then call the function in the next:</p>
 <pre><code class="language-js">import someModuleFactory from &#39;some-module&#39;;
 const someModule = someModuleFactory();
 </code></pre>
+<p>It&#39;s not quite as elegant, but it works.</p>
+<h2>Summary</h2><p>For more information, read Mozilla&#39;s documentation on <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">import</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export">export</a></p>
 
 </article>
             </main>
