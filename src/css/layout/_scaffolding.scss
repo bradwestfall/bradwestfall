@@ -3,13 +3,12 @@
 }
 
 .primary-content {
-    margin: 2em;
+    margin: $gutter;
 
-    @include wider-than(750px) {
+    @include wider-than($desktop-breakpoint) {
         margin-left: auto;
         margin-right: auto;
         width: 650px;
-        
     }
 
 }

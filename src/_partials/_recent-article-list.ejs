@@ -1,4 +1,4 @@
-<nav class="link-list">
+<nav>
     <% for (var slug in public.articles._data) { %>
         <% if (public.articles._data[slug].isArticle !== false) { %>
             <a href="/articles/<%= slug %>"><%= public.articles._data[slug].title%></a>

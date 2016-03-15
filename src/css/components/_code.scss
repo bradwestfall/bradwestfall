@@ -1,11 +1,7 @@
 /**
  * prism.js Monokai theme for CSS & Sass/Scss
- *
- * @todo test for JavaScript & HTML
- *
  * @author @MoOx
  */
-/* line 35, syntax-highlighting.scss */
 
 code {
   font-family: Menlo, Monaco, "Courier New", monospace;
@@ -13,9 +9,7 @@ code {
   line-height: 18px;
 }
 
-
 code[class*="language-"] {
-//pre[class*="language-"] {
   tab-size: 4;
   hyphens: none;
   white-space: pre;
@@ -26,89 +20,83 @@ code[class*="language-"] {
   text-shadow: none;
 }
 
-/* line 61, syntax-highlighting.scss */
-pre[class*="language-"],
-:not(pre) > code[class*="language-"] {
-  background: #2a2a2a;
-  margin-left: -2em;
-  margin-right: -2em;
-}
-
-/* line 66, syntax-highlighting.scss */
 pre[class*="language-"] {
   padding: 1em 2em;
-  border-radius: 4px;
+  margin-left: -$gutter;
+  margin-right: -$gutter;
+  background: #2a2a2a;
+
+  @include wider-than($desktop-breakpoint) {
+    border-radius: 4px;
+  }
+
 }
 
-/* line 85, syntax-highlighting.scss */
-:not(pre) > code[class*="language-"] {
-  padding: .15em .2em .05em;
-  border-radius: .3em;
-  border: 0.13em solid #7a6652;
-  box-shadow: 1px 1px .3em -.1em black inset;
-}
+// :not(pre) > code[class*="language-"] {
+//   padding: .15em .2em .05em;
+//   border-radius: .3em;
+//   border: 0.13em solid #7a6652;
+//   box-shadow: 1px 1px .3em -.1em black inset;
+// }
 
 /* line 92, syntax-highlighting.scss */
 .namespace {
   opacity: .7;
 }
 
-/* line 100, syntax-highlighting.scss */
 .token.comment, .token.prolog, .token.doctype, .token.cdata {
   color: #6f705e;
 }
-/* line 107, syntax-highlighting.scss */
+
 .token.null, .token.operator, .token.boolean, .token.number {
   color: #a77afe;
 }
-/* line 112, syntax-highlighting.scss */
+
 .token.attr-name, .token.string {
   color: #e6d06c;
 }
-/* line 119, syntax-highlighting.scss */
+
 .token.entity, .token.url, .language-css .token.string, .style .token.string {
   color: #e6d06c;
 }
-/* line 123, syntax-highlighting.scss */
+
 .token.selector {
   color: #a6e22d;
 }
-/* line 133, syntax-highlighting.scss */
+
 .token.atrule, .token.attr-value, .token.keyword, .token.control, .token.directive, .token.important, .token.unit {
   color: #ef3b7d;
 }
-/* line 138, syntax-highlighting.scss */
+
 .token.regex, .token.statement {
   color: #76d9e6;
 }
-/* line 143, syntax-highlighting.scss */
+
 .token.placeholder, .token.variable {
   color: white;
 }
-/* line 148, syntax-highlighting.scss */
+
 .token.important, .token.statement {
   font-weight: bold;
 }
-/* line 152, syntax-highlighting.scss */
+
 .token.punctuation {
   color: #bebec5;
 }
-/* line 156, syntax-highlighting.scss */
+
 .token.entity {
   cursor: help;
 }
-/* line 161, syntax-highlighting.scss */
+
 .token.debug {
   color: red;
 }
 
-/* line 164, syntax-highlighting.scss */
 pre[data-line] {
   position: relative;
   padding: 1em 0 1em 3em;
 }
 
-/* line 169, syntax-highlighting.scss */
 .line-highlight {
   position: absolute;
   left: 0;
@@ -121,7 +109,6 @@ pre[data-line] {
   white-space: pre;
 }
 
-/* line 185, syntax-highlighting.scss */
 .line-highlight:before,
 .line-highlight[data-end]:after {
   content: attr(data-start);
@@ -141,7 +128,6 @@ pre[data-line] {
   box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
 }
 
-/* line 207, syntax-highlighting.scss */
 .line-highlight[data-end]:after {
   content: attr(data-end);
   top: auto;
@@ -149,37 +135,37 @@ pre[data-line] {
 }
 
 /******************************************************************
-CODE - SWITCH COLORS A BIT DEPENDING ON LANGUAGE
+  Special Colors for HTML
 ******************************************************************/
-/* line 216, syntax-highlighting.scss */
+
 code.language-html {
   color: #f9f9f9;
 }
-/* line 220, syntax-highlighting.scss */
+
 code.language-html .token.tag {
   color: #ef3b7d;
 }
-/* line 221, syntax-highlighting.scss */
+
 code.language-html .token.attr-name {
   color: #a6e22d;
 }
-/* line 222, syntax-highlighting.scss */
+
 code.language-html .token.attr-value {
   color: #e6d06c;
 }
-/* line 225, syntax-highlighting.scss */
+
 code.language-html .token.style, code.language-html .token.script {
   color: #76d9e6;
 }
-/* line 230, syntax-highlighting.scss */
+
 code.language-html .token.script .token.keyword {
   color: #76d9e6;
 }
 
 /******************************************************************
-CODE  - PRISM THEME OVERRIDES
+  CODE - PRISM THEME OVERRIDES
 ******************************************************************/
-/* line 241, syntax-highlighting.scss */
+
 code[class*="language-"],
 pre[class*="language-"] {
   white-space: pre !important;
@@ -187,11 +173,10 @@ pre[class*="language-"] {
   overflow: auto;
 }
 
-/* line 251, syntax-highlighting.scss */
 pre {
   position: relative;
 }
-/* line 254, syntax-highlighting.scss */
+
 pre:before {
   position: absolute;
   top: 0;
@@ -205,7 +190,7 @@ pre:before {
   color: white;
   text-indent: 1em;
 }
-/* line 269, syntax-highlighting.scss */
+
 pre code {
   overflow: auto;
   white-space: pre;

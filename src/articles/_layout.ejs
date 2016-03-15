@@ -8,9 +8,9 @@
     <div class="page">
 
         <div class="primary-content">
-            <aside class="primary-aside">
-                <%- partial('../_partials/_recent-article-list'); %>
-            </aside>
+
+            <%- partial('../_partials/_aside'); %>
+
             <main>
                 <% var article = public.articles._data[current.source]; %>
                 <% article.yield = partial(current.source); %>

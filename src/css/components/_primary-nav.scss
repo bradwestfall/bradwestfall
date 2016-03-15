@@ -9,7 +9,6 @@
     display: none;
     position: fixed;
     top: 0; right: 0; bottom: 0; left: 0;
-    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .toggle-menu.on {
@@ -32,7 +31,7 @@
  * Mobile On-State
  */
 
-@include smaller-than($desktop-breakpoint) {
+@include smaller-than($nav-breakpoint) {
     #toggle-menu:checked {
         ~ .toggle-menu.off { display: block; }
         ~ .primary-aside { transform: translate(0); }
@@ -52,12 +51,12 @@
     transform: translateY(calc(-100% + 5px));
     transition: all 0.3s;
 
-    @include smaller-than($desktop-breakpoint) {
+    @include smaller-than($nav-breakpoint) {
         background-image: linear-gradient(-40deg, $pink, #05C5D8);
         border-bottom: 5px solid $gray;
     }
 
-    @include wider-than($desktop-breakpoint) {
+    @include wider-than($nav-breakpoint) {
         width: 200px;
         height: auto;
         border-radius: 0;
@@ -74,7 +73,7 @@
         /**
          * Mobile Nav Design
          */
-        @include smaller-than($desktop-breakpoint) {
+        @include smaller-than($nav-breakpoint) {
             padding: 0.5em;
             padding-top: 0;
 
@@ -96,7 +95,7 @@
         }
 
         // Switch to columns
-        @include between(500px, $desktop-breakpoint) {
+        @include between(500px, $nav-breakpoint) {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
@@ -106,14 +105,14 @@
             }
         }
 
-        @include between(800px, $desktop-breakpoint) {
+        @include between(800px, $nav-breakpoint) {
             a { width: 32%; }
         }
 
         /**
          * Desktop Nav Design
          */
-        @include wider-than($desktop-breakpoint) {
+        @include wider-than($nav-breakpoint) {
             a {
                 display: block;
                 padding: 0.5em;
@@ -135,7 +134,7 @@
 
 // Don't display on and off toggles
 .toggle-menu {
-    @include wider-than($desktop-breakpoint) {
+    @include wider-than($nav-breakpoint) {
         display: none;
     }
 }
