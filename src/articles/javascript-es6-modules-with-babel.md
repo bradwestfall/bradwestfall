@@ -30,7 +30,7 @@ module.exports = {
 };
 ```
 
-One thing that make exporting different in ES2015 modules is its ability to export multiple things from the same file:
+One thing that make exporting different in ES2015 modules is their ability to `export` multiple things from the same file:
 
 ```js
 // second-example.js
@@ -43,7 +43,7 @@ export function bar() {
 }
 ```
 
-However, importing each of these files gives a different result than you may expect:
+However, if we were to `import` the two examples (the first being a CommonJS export and the second being an ES2015 export), we get different results:
 
 ```js
 import first from 'first-example';
@@ -53,7 +53,7 @@ console.log(first);  // object
 console.log(second); // undefined
 ```
 
-The second example doesn't have a `default` export so the variable returned is `undefined`. However, destructuring can be used to extract the `foo` and `bar` functions into variables:
+With ES2015 exports, if no `default` is defined and the file has only named exports, then the above import statement will produce `undefined`. However, destructuring can be used to extract the `foo` and `bar` functions into variables:
 
 ```js
 import { foo, bar } from 'second-example';
@@ -72,7 +72,7 @@ second.foo();
 second.bar();
 ```
 
-<p class="footnote">* Everything that is being exported that is</p>
+<p class="footnote">* The object, `second`, will contain a method of all named exports from the file. In other words, if there were functions in the file that weren't exported, they won't become methods of `second`.</p>
 
 
 ## Default Exports

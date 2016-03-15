@@ -55,9 +55,23 @@
 //  Responsive
 // ***********************************
 
-// Responsive
+// Wider than
 @mixin wider-than($min-width) {
-	@media screen and (min-width: $min-width) {
+	@media (min-width: $min-width) {
 		@content;
 	}
+}
+
+// Smaller than
+@mixin smaller-than($max-width) {
+    @media (max-width: $max-width) {
+        @content;
+    }
+}
+
+// Smaller than
+@mixin between($min-width, $max-width) {
+    @media (min-width: $min-width) and (max-width: $max-width) {
+        @content;
+    }
 }
