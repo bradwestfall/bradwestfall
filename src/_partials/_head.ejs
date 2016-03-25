@@ -1,7 +1,22 @@
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title><%= public.articles._data[current.source].title || 'Brad Westfall | Web Developer, Speaker, Blogger' %></title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <link href='https://fonts.googleapis.com/css?family=Abril+Fatface|Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link href='https://fonts.googleapis.com/css?family=Abril+Fatface|Open+Sans:300,400,700' rel='stylesheet' type='text/css' />
+
+    <% var article = public.articles._data[current.source]; %>
+
+    <meta property="og:author" content="Brad Westfall">
+    <meta property="og:title" content="<%= article.title%> " />
+    <meta property="og:url" content="http://bradwestfall.com/articles/<%= current.source %>" />
+
+    <meta property="og:image" content="http://bradwestfall.com<%= article.hero.file %>" />
+    <meta property="og:image:width" content="<%= article.hero.width %>" />
+    <meta property="og:image:height" content="<%= article.hero.height %>" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@bradwestfall" />
+    <meta name="twitter:creator" content="@bradwestfall" />
+
 </head>
