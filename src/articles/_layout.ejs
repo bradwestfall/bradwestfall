@@ -7,6 +7,8 @@
     
     <div class="page">
 
+        <%- partial('./heros/_' + current.source); %>
+
         <div class="primary-content">
 
             <%- partial('../_partials/_aside'); %>
@@ -17,6 +19,8 @@
                 <%- partial('_decorator', article) %>
             </main>
         </div>
+
+        <%- partial('../_partials/_footer'); %>
 
     </div>
     

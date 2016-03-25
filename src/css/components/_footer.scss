@@ -1,0 +1,25 @@
+footer {
+    border-top: 1px solid #eee;
+    padding: 1em;
+    margin-top: 2em;
+    font-size: 0.6em;
+    color: #ddd;
+
+    a {
+        color: #ccc;
+        transition: color 1s;
+    }
+
+    &:hover a {
+        color: $default-anchor-color;
+    }
+
+    @include wider-than($desktop-breakpoint) {
+        margin-left: auto;
+        margin-right: auto;
+        width: 850px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+}

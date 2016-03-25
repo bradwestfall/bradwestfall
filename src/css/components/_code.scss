@@ -18,10 +18,11 @@ code[class*="language-"] {
   word-wrap: break-word;
   color: #76d9e6;
   text-shadow: none;
+  font-size: 0.7em;
 }
 
 pre[class*="language-"] {
-  padding: 1em 2em;
+  padding: 1em;
   margin-left: -$gutter;
   margin-right: -$gutter;
   background: #2a2a2a;
