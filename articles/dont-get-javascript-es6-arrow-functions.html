@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Brad Westfall | Web Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link href='https://fonts.googleapis.com/css?family=Abril+Fatface|Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    
+    <div class="page">
+
+        <div class="hero" style="background-color: #46ABA7">
+    <img src="/images/hero/arrow-functions.jpg">
+</div>
+
+        <div class="primary-content">
+
+            <input type="checkbox" id="toggle-menu">
+<label for="toggle-menu" class="toggle-menu off"></label>
+
+<aside class="primary-aside">
+    <nav>
+        <a href="/">Welcome</a>
+        <a href="/community">Community</a>
+        <a href="/articles">Articles</a>
+        <a href="/talks">Talks</a>
+        <a href="https://www.sitepoint.com/premium/users/bWestfall">Sitepoint</a>
+        <a href="https://www.youtube.com/channel/UCZi-0WJPUNb_LQocFMJw5dA/videos">YouTube</a>
+        <a href="http://azpixels.com">Work</a>
+    </nav>
+    <label for="toggle-menu" class="toggle-menu on">Menu</label>
+</aside>
+
+            <main>
+                
+                
+                <article>
+    <header>
+        <h1>Don&#39;t Get Arrow Functions?</h1>
+        <time datetime="2016-03-23">2016-03-23</time>
+    </header>
+    <p>They&#39;re becoming quite fashionable right? We see them in all the new articles. And if you&#39;re not used to them, it can be difficult to read the docs of your new favorite module that has arrow functions in all the examples.</p>
+<p>This post isn&#39;t trying to make claims about when or how you should use them. I only hope to explain the new syntax for someone seeing it for the first time. Whether you decide to use them or not, you&#39;re going to eventually read code from others that has them. So it&#39;s best to understand the mechanics of this new syntax.</p>
+<p>Here&#39;s a quick example:</p>
+<pre><code class="language-js">const addOne = function(n) {
+    return n + 1;
+}
+</code></pre>
+<p>The above example is the exact same thing now as:</p>
+<pre><code class="language-js">const addOne = (n) =&gt; {
+    return n + 1;
+}
+</code></pre>
+<p>Which, in this case, can even be shorter:</p>
+<pre><code class="language-js">const addOne = (n) =&gt; n + 1;
+</code></pre>
+<p>The second example uses <code>{ ... }</code> parenthesis, but since it only has one line of code to return something, the parenthesis can be omitted and the return is implied &mdash; as seen in the third example.</p>
+<h2>Single Parameter</h2><p>When an arrow function has a single parameter, its parenthesis can be omitted:</p>
+<pre><code class="language-js">// Turn this:
+someCallBack((results) =&gt; {
+    ...
+})
+
+// Into this:
+someCallBack(results =&gt; {
+    ...
+})
+</code></pre>
+<p>But if there are no parameters, you must use an open and closed set of parenthesis</p>
+<pre><code class="language-js">someCallBack(() =&gt; {
+    ...
+})
+</code></pre>
+<h2>Callbacks</h2><p>Arrow functions are especially useful for callbacks. Those familiar with JavaScript are familiar with it&#39;s lexical scoping, which is nice in many ways, but lends itself to doing things like <em>this</em> trick:</p>
+<pre><code class="language-js">...
+var _this = this;
+someCallBack(function() {
+    _this.accessOuterScope();
+})
+</code></pre>
+<p>There are several variations instead of &quot;_this&quot; (like &quot;self&quot; or &quot;that&quot;), but the idea is the same. In the callback, we need access to the outer scope&#39;s version of <code>this</code> which is now different since we&#39;re inside the callback.</p>
+<p><strong>With arrow functions</strong>, we get &quot;block scope&quot; and &quot;this&quot; is the same &quot;this&quot; in both places. That means the above code can be written without doing <code>_this = this</code>:</p>
+<pre><code class="language-js">...
+someCallBack(() =&gt; {
+    this.accessOuterScope();
+})
+</code></pre>
+<p>Here&#39;s a tweet from Google Engineer, Jeff Archibald to the niceties of arrow functions and how they eliminate the need for <code>_this = this</code>:</p>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">The great thing about arrow functions is this terrible joke can die <a href="https://t.co/fTAz1EFedN">https://t.co/fTAz1EFedN</a></p>&mdash; Jake Archibald (@jaffathecake) <a href="https://twitter.com/jaffathecake/status/713357424267276288">March 25, 2016</a></blockquote>
+
+
+<h2>The &quot;Wrapper&quot;</h2><p>Let&#39;s imagine a situation, like in React, where the <code>onClick</code> event needs to call <code>doSomething()</code>, but also needs to pass arguments to <code>doSomething()</code>, like an ID.</p>
+<p>This first example actually doesn&#39;t work:</p>
+<pre><code class="language-js">const User = React.createClass(function() {
+  render: function() {
+    return &lt;div onClick={doSomething(this.props.id)}&gt;Some User&lt;/div&gt;
+  }
+})
+</code></pre>
+<p>The code will run, but it&#39;s technically calling <code>doSomething()</code> immediately when the page first loads. To solve this, some devs reference a wrapper function:</p>
+<pre><code class="language-js">const User = React.createClass(function() {
+
+  render: function() {
+    return &lt;div onClick={this.onClick}&gt;Some User&lt;/div&gt;
+  },
+
+  onClick: function() {
+    doSomething(this.props.userId);
+  }
+
+})
+</code></pre>
+<p class="footnote">
+    The lack of parenthesis on <code>this.onClick</code> means it&#39;s just a reference to the function, and not actually calling it
+</p>
+
+<p>The <code>onClick()</code> function now serves as somewhat of a &quot;wrapper&quot; for <code>doSomething()</code>.</p>
+<p>With arrow functions, one can make inline wrappers like this:</p>
+<pre><code class="language-js">const User = React.createClass(function() {
+  render: function() {
+    return &lt;div onClick={() =&gt; doSomething(this.props.userId)}&gt;Some User&lt;/div&gt;
+  }
+})
+</code></pre>
+<p>Just to show another way, we could also use <code>.bind()</code> which would not require any wrapped functions (arrow function or otherwise):</p>
+<pre><code class="language-js">const User = React.createClass(function() {
+  render: function() {
+    return &lt;div onClick={doSomething.bind(null, this.props.userId)}&gt;Some User&lt;/div&gt;
+  }
+})
+</code></pre>
+<h2>Browser Support</h2><p>If you need browser support beyond the recent versions of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#Browser_compatibility">Chrome and Firefox</a>, I would suggest using the <a href="https://babeljs.io/">Babel transpiler</a> to convert your ES6 code that you write, into ES5 code for the browser.</p>
+
+</article>
+            </main>
+        </div>
+
+        <footer>
+    <a href="http://twitter.com/bradwestfall">@bradwestfall</a>
+</footer>
+
+    </div>
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+<script async src="/js/prism.js"></script>
+<script async src="/js/helpers.js"></script>
+<script async src="//platform.twitter.com/widgets.js"></script>
+
+</body>
+</html>
