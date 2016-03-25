@@ -3,6 +3,7 @@
         "title": "Don't Get Arrow Functions?",
         "date": "2016-03-23",
         "category": ["JavaScript", "ES6"],
+        "description": "ES2016 (ES6) arrow functions don't have to be confusing. Let's dive into some examples which makes them easier!",
         "hero": {
             "file": "/images/heros/arrow-functions.jpg",
             "width": 897,
