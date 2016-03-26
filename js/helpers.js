@@ -11,4 +11,13 @@ $(function() {
         });
     });
 
+    /**
+     * Format Time Elements
+     */
+    $('time').each(function() {
+        var date = new Date($(this).text())
+        var formatedDate = (date.getMonth() + 1) + '/' + date.getDate() + '/' +  date.getFullYear()
+        $(this).text(formatedDate)
+    });
+
 })
