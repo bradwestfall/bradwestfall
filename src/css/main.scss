@@ -13,7 +13,6 @@
 
 @import "base/defaults";
 
-
 /**
  * Components
  */
@@ -30,3 +29,9 @@
  */
 
 @import "layout/scaffolding";
+
+/**
+ * Theme
+ */
+
+@import "theme/home";

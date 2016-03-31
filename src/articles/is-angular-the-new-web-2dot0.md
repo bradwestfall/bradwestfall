@@ -1,0 +1,19 @@
+I remember when "Web 2.0" was all the hype in the early-to-mid 2000's. The term seemed to have so many different meanings and misconceptions. Chances are, if you were a developer at that time, your definition was far different from your marketing counterparts. While it was clear that the Web was changing in many ways, somehow "Web 2.0" became the catchall phrase for anything that was new.
+
+Clients would ask me if I was capable of doing Web 2.0 as a part of their screening process. When I asked them to define exactly what they meant, I would get obscure answers like "it's the new 'look' that websites have" or "it's a modern website". So clearly, whatever the meaning of the term was supposed to be, it had become a buzzword.
+
+In this same time-period, I remember clients asking me to "put Ajax in their site". Keep in mind, at this time there were no SPAs. Ajax was "cool" and was used in some edge-cases, but it certainly wasn't needed for a typical content-based website. But that didn't stop them from asking if there was a way for us to get some of that Ajax stuff put in there. Ajax, like Web 2.0, had become a buzzword to some.
+
+Suddenly, everyone was claiming to be a Web 2.0 specialist &mdash; after all, that's what the clients were demanding. If you were doing client work, you had to put it on your website. If you were looking for a direct-hire position, you would put it on your résumé. Many did this, not because they believed in the term or even had a solid definition themselves, but only because the people who hire us required it. I remember we had a joke at the office that we were going to put "Web 3.0 Specialists" on our website. It was my frustration that the term seemed to be more of a one-upper so people could express their superiority over their competition.
+
+## Now Angular
+
+That all being said, I must admit I don't do Angular development. But that's not the point.
+
+Recently, I sat down with some technical recruiter friends for lunch. There was no agenda other than catching up, and I asked how the industry look like on their end of things. They said it's becoming nearly impossible in Phoenix to find candidates looking for work who are competent senior-level JavaScript developers. With so many new companies moving to Phoenix and being that JavaScript is so hot at the moment, almost all the senior-level devs are gainfully employed. If one decides to put their resume out there, it becomes a feeding frenzy that sometimes results in a ridiculously high salary offer.
+
+To me, this wasn't a huge surprise. Having organized the [Phoenix JavaScript meetup](http://www.meetup.com/Phoenix-JavaScript/) for a few years now, I've seen a huge upward trend in demand for JS devs in this area. So then I asked him what frameworks companies are looking for. Without hesitation, he confidently said "Senior Angular Developers". Again, this wasn't much of a surprise. However, it's what he said next that had me so shocked.
+
+He said that Angular is becoming almost a buzzword and that some of these companies are spending a lot of money on "Angular Developers", only to have them work on jQuery assignments. He said these companies and their hiring managers are being told a list of terms to look for on résumés (which always includes Angular) whether they need Angular or not. Further, he said that some candidates admit they barely know Angular and are getting offers over more competent developers who happen to not have Angular on their resume.
+
+I was shocked. Of course, this is of not fault to Angular. It's a tool that we can choose to use like Ajax that _we_ understand. But much like 10 years ago, it has become the hot new tool that will get you hired, whether the client or job needs it or not.
